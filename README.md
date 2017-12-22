@@ -3,8 +3,17 @@
 
 
 
-/**
- * Created by ${USER} on ${DATE}.  
- */
+             /**
+              * Created by ${USER} on ${DATE}.  
+              */
+ 
+ 
+             #!/usr/bin/env python
+             # -*- coding: utf-8 -*-
+
+             __author__ = '${USER}'
+
+
+
  
  
