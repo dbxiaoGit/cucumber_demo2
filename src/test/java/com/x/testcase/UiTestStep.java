@@ -32,10 +32,10 @@ import static org.testng.Assert.assertEquals;
 
 //@Component
 @Scope("cucumber-glue")
-public class StepDefine1 {
-    Logger logger = LoggerFactory.getLogger(getClass());
+public class UiTestStep {
+    private Logger logger = LoggerFactory.getLogger(getClass());
     @Autowired
-    EventFiringWebDriver webDriver;
+    private EventFiringWebDriver webDriver;
 
     @Given("^打开网页(.+?)$")
     public void openBrowser(String url) {
@@ -100,7 +100,7 @@ public class StepDefine1 {
         assertEquals(elementText,text);
     }
 
-    @After
+    @After("@ui_test")
     public void testAfter(Scenario s){
         //s.write("html:"+webDriver.getPageSource());
         //String base64String = ((TakesScreenshot)webDriver).getScreenshotAs(OutputType.BASE64);

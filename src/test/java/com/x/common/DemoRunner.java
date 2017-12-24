@@ -12,7 +12,7 @@ import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(strict = true, monochrome = true, features = "src/test/resources/features",
-        glue = "com.x",
+        glue = "com.x.testcase",
         plugin = {"pretty", "html:target/cucumber-html-report;","json:target/cucumber.json" },
         tags = {})
 public class DemoRunner extends AbstractTestNGCucumberTests {

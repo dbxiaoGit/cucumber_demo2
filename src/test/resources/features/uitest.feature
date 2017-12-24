@@ -1,8 +1,9 @@
 # language: zh-CN
-功能:一个小demo
 
-  @smoke
-  场景大纲: 一个ui的demo
+@ui_test
+功能:ui功能测试
+
+  场景大纲: 一个ui功能测试的demo
     * 打开网页<url>
     * 检查页面是否包含text为<text>的超链接<href>
     例子:
