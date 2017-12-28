@@ -18,4 +18,4 @@
  
  
             mvn test verify -Dcucumber.options="--tags @ui_test"
-            mvn test verify -Dcucumber.options="--name test"
+            mvn test verify -Dcucumber.options="--name api"
