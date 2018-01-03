@@ -38,14 +38,14 @@ public class UiTestStep {
     private EventFiringWebDriver webDriver;
 
     @Given("^打开网页(.+?)$")
-    public void openBrowser(String url) {
+    public void openBrowser(String url) throws Throwable {
         logger.info("openBrowser");
         webDriver.manage().timeouts().implicitlyWait(10L, TimeUnit.SECONDS);
         webDriver.get(url);
     }
 
     @Given("^检查页面是否包含text为(.+?)的超链接(.+?)$")
-    public void checkContains(String text,String href) {
+    public void checkContains(String text,String href) throws Throwable {
         String xpath = "//a[@href='"+href+"']";
         logger.info("xpath : {}",xpath);
         WebDriverWait webDriverWait = new WebDriverWait(webDriver,10L);
