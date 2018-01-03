@@ -20,36 +20,9 @@ public class HTTPUtil extends BaseAction {
     private Logger logger = LoggerFactory.getLogger(getClass());
     protected String uri;
     protected String param;
+    protected String requestMethod;
     protected int statusCode;
     protected String result;
-
-    public HTTPUtil() {
-    }
-
-    public HTTPUtil(String uri) {
-        this.uri = uri;
-    }
-
-    public HTTPUtil(String uri, String param) {
-        this.uri = uri;
-        this.param = param;
-    }
-
-    public String getUri() {
-        return uri;
-    }
-
-    public void setUri(String uri) {
-        this.uri = uri;
-    }
-
-    public String getParam() {
-        return param;
-    }
-
-    public void setParam(String param) {
-        this.param = param;
-    }
 
     public String doGet() {
         logger.info("开始执行GET请求");
@@ -57,20 +30,17 @@ public class HTTPUtil extends BaseAction {
         CloseableHttpClient httpClient = HttpClients.createDefault();
         HttpGet doGet = new HttpGet(uri);
         doGet.setHeader("Content-type", "");
-        logger.info("执行请求的URI为：" + doGet.getURI());
+        logger.info("执行请求的URI为：{}" , doGet.getURI());
         try {
             CloseableHttpResponse response = httpClient.execute(doGet);
             try {
                 if (response != null) {
                     statusCode = response.getStatusLine().getStatusCode();
                     if (statusCode != 200) {
-                        logger.error("request faild,status code：" + statusCode + response.getStatusLine());
-                        result = EntityUtils.toString(response.getEntity(), Charset.forName("UTF-8"));
-                        logger.info("response content:" + result);
-                    } else {
-                        result = EntityUtils.toString(response.getEntity(), Charset.forName("UTF-8"));
-                        logger.info("response content：" + result);
+                        logger.error("request faild,status code：{}" , statusCode );
                     }
+                    result = EntityUtils.toString(response.getEntity(), Charset.forName("UTF-8"));
+                    logger.info("response content：{}" ,result);
                 } else {
                     logger.info("response is null");
                 }
@@ -91,29 +61,23 @@ public class HTTPUtil extends BaseAction {
 
     public String doPost() {
         logger.info("开始执行Post请求");
-
         CloseableHttpClient httpClient = HttpClients.createDefault();
         HttpPost dopost = new HttpPost(uri);
         dopost.setHeader("Content-type", "");
         StringEntity entity = new StringEntity(param.toString(), "utf-8");
         try {
             dopost.setEntity(entity);
-            logger.info("执行请求的URI为：" + dopost.getURI());
-            logger.info("请求参数为：" + param);
+            logger.info("执行请求的URI为：{}" , dopost.getURI());
+            logger.info("请求参数为：{}" , param);
             CloseableHttpResponse response = httpClient.execute(dopost);
             try {
                 if (response != null) {
                     statusCode = response.getStatusLine().getStatusCode();
-
                     if (statusCode != 200) {
-                        logger.error("request faild,status code：" + statusCode + response.getStatusLine());
-                        result = EntityUtils.toString(response.getEntity(), Charset.forName("UTF-8"));
-                        logger.info("response content:" + result);
-                    } else {
-                        response.getEntity().getContentLength();
-                        result = EntityUtils.toString(response.getEntity(), Charset.forName("UTF-8"));
-                        logger.info("response content:" + result);
+                        logger.error("request faild,status code：{}" , statusCode );
                     }
+                    result = EntityUtils.toString(response.getEntity(), Charset.forName("UTF-8"));
+                    logger.info("response content:{}" , result);
                 } else {
                     logger.info("response is null");
                 }
@@ -131,5 +95,17 @@ public class HTTPUtil extends BaseAction {
             }
         }
         return result;
+    }
+
+    public void sendRequest(){
+        if(requestMethod != null){
+            if(requestMethod.equalsIgnoreCase("get")){
+                doGet();
+            }else if (requestMethod.equalsIgnoreCase("post")) {
+                doPost();
+            }
+        } else {
+            logger.error("requestMethod is null");
+        }
     }
 }
