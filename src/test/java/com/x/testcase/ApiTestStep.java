@@ -8,6 +8,8 @@ import cucumber.api.java.en.Given;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.nio.charset.Charset;
+
 /**
  * Created by x on 2017/12/24.
  */
@@ -52,8 +54,8 @@ public class ApiTestStep extends HTTPUtil {
     @Given("^检查jsonPath为(.+?)是否为(.+?)")
     public void checkResponse(String jsonPath,String expectedValue) throws Throwable{
         logger.info("checkResponse,jsonPath:{},expectedValue:{}",jsonPath,expectedValue);
-        com.alibaba.fastjson.JSONObject jsonObject = com.alibaba.fastjson.JSON.parseObject(result);
-        //setCheckPoint(jsonObject.,expectedValue);
+        Object actual = com.alibaba.fastjson.JSONPath.read(result,jsonPath);
+        setCheckPoint(actual,expectedValue,"jsonpath断言");
         check();
     }
 
@@ -61,8 +63,8 @@ public class ApiTestStep extends HTTPUtil {
 
     @After("@api_test")
     public void testAfter(Scenario s){
-        s.embed(uri.getBytes(),"text/plain");
-        s.embed(param.getBytes(),"application/json");
-        s.embed(result.getBytes(),"application/json");
+        s.embed(uri.getBytes(Charset.forName("utf-8")),"text/plain");
+        s.embed(param.getBytes(Charset.forName("utf-8")),"application/json");
+        s.embed(result.getBytes(Charset.forName("utf-8")),"application/json");
     }
 }
