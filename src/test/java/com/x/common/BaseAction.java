@@ -8,9 +8,9 @@ import java.util.List;
  */
 
 public class BaseAction extends BaseOps {
-    private String caseId;
-    private String caseDescription;
-    private List<CheckPoint> checkPoints = new ArrayList<CheckPoint>();
+    protected String caseId;
+    protected String caseDescription;
+    protected List<CheckPoint> checkPoints = new ArrayList<CheckPoint>();
 
     public String getCaseId() {
         return caseId;
@@ -36,8 +36,8 @@ public class BaseAction extends BaseOps {
         this.checkPoints = checkPoints;
     }
 
-    public void setCheckPoint(String actual,String expectation){
-        CheckPoint cp = new CheckPoint(caseId,actual,expectation);
+    public void setCheckPoint(Object actual,Object expectation,String comment){
+        CheckPoint cp = new CheckPoint(caseId,actual,expectation,comment);
         checkPoints.add(cp);
     }
 
