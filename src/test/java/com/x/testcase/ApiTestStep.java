@@ -55,6 +55,8 @@ public class ApiTestStep extends HTTPUtil {
     public void checkResponse(String jsonPath,String expectedValue) throws Throwable{
         logger.info("checkResponse,jsonPath:{},expectedValue:{}",jsonPath,expectedValue);
         Object actual = com.alibaba.fastjson.JSONPath.read(result,jsonPath);
+        logger.info("actual:{}",actual);
+        logger.info("actual.toString():{}",actual.toString());
         setCheckPoint(actual,expectedValue,"jsonpath断言");
         check();
     }
