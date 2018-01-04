@@ -54,7 +54,8 @@ public class ApiTestStep extends HTTPUtil {
     @Given("^检查jsonPath为(.+?)是否为(.+?)$")
     public void checkResponse(String jsonPath,String expectedValue) throws Throwable{
         logger.info("checkResponse,jsonPath:{},expectedValue:{}",jsonPath,expectedValue);
-        Object actual = com.alibaba.fastjson.JSONPath.read(result,jsonPath);
+        //Object actual = com.alibaba.fastjson.JSONPath.read(result,jsonPath);
+        String actual = com.jayway.jsonpath.JsonPath.read(result,jsonPath);
         logger.info("actual:{}",actual);
         logger.info("actual.toString():{}",actual.toString());
         setCheckPoint(actual,expectedValue,"jsonpath断言");
