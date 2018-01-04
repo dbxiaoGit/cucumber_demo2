@@ -29,7 +29,7 @@ public class HTTPUtil extends BaseAction {
 
         CloseableHttpClient httpClient = HttpClients.createDefault();
         HttpGet doGet = new HttpGet(uri);
-        doGet.setHeader("Content-type", "");
+        //doGet.setHeader("Content-type", "");
         logger.info("执行请求的URI为：{}" , doGet.getURI());
         try {
             CloseableHttpResponse response = httpClient.execute(doGet);
@@ -63,7 +63,7 @@ public class HTTPUtil extends BaseAction {
         logger.info("开始执行Post请求");
         CloseableHttpClient httpClient = HttpClients.createDefault();
         HttpPost dopost = new HttpPost(uri);
-        dopost.setHeader("Content-type", "");
+        dopost.setHeader("Content-type", "application/json");
         StringEntity entity = new StringEntity(param.toString(), "utf-8");
         try {
             dopost.setEntity(entity);
