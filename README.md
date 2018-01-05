@@ -21,3 +21,9 @@
             mvn test verify -Dcucumber.options="--name api"
 
            mvn  clean test verify -Dcucumber.options="--tags @api_test"
+windows下jenkins构建命令用%%引用choice中的变量
+>仅需要配一个Cucumber reports
+>高级 Json Reports Path
+>>target/
+>File Include Pattern
+>>cucumber.json
