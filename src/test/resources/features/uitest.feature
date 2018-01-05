@@ -1,5 +1,6 @@
 # language: zh-CN
 
+@all_test
 @ui_test
 功能:ui功能测试
 

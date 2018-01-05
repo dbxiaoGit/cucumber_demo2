@@ -1,5 +1,6 @@
 # language: zh-CN
 
+@all_test
 @api_test
 功能:api功能测试
 
