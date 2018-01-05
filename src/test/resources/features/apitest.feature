@@ -17,6 +17,6 @@
     * 检查jsonPath为<jsonPath>是否为<expectValue>
     例子:
       | alterJsonPath | alterValue | jsonPath | expectValue |
-      | $.name        | 张三         | $.role   | 前端开发          |
-      | $.name        | 李四         | $.role   | 后端开发          |
-      | $.name        | 王五         | $.role   | 测试          |
+      | $.name        | 张三         | $[0].role   | 前端开发          |
+      | $.name        | 李四         | $[0].role   | 后端开发          |
+      | $.name        | 王五         | $[0].role   | 测试          |
